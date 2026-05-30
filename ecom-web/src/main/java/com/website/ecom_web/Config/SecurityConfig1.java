@@ -17,6 +17,10 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+
+import java.util.List;
 
 @Configuration
 @EnableWebSecurity
@@ -33,7 +37,18 @@ public class SecurityConfig1 {
 
 
         return http.csrf(customizer -> customizer.disable())
-                .cors(Customizer.withDefaults())
+               // .cors(Customizer.withDefaults())
+                .cors(cors -> cors.configurationSource(request -> {
+                    CorsConfiguration config = new CorsConfiguration();
+                    config.setAllowedOrigins(List.of(
+                            "http://localhost:5173",
+                            "https://current-frontend-eight.vercel.app"
+                    ));
+                    config.setAllowedMethods(List.of("GET","POST","PUT","DELETE","OPTIONS"));
+                    config.setAllowedHeaders(List.of("*"));
+                    config.setAllowCredentials(true);
+                    return config;
+                }))
                 .authorizeHttpRequests(request -> request
                         // Public Endpoints
                         .requestMatchers("/api/auth/**").permitAll()// registration + login = public
@@ -67,4 +82,7 @@ public class SecurityConfig1 {
     public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
         return config.getAuthenticationManager();
     }
+
+//    @Autowired
+//    private CorsConfigurationSource corsConfigurationSource;
 }

@@ -59,5 +59,10 @@ public class AuthController {
         return "Auth Controller Working";
     }
 
+    @PostMapping("/login123")
+    public String login123() {
+        return "working";
+    }
+
 }
 

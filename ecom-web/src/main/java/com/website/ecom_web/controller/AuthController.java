@@ -64,5 +64,10 @@ public class AuthController {
         return "working";
     }
 
+    @PostMapping("/register2")
+    public String register2() {
+        return "register2 working";
+    }
+
 }
 

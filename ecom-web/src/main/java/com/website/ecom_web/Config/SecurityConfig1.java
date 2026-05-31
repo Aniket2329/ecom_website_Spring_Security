@@ -123,6 +123,8 @@ import java.util.List;
 @EnableWebSecurity
 public class SecurityConfig1 {
 
+
+
     @Autowired
     private JwtAuthFilter jwtAuthFilter;
 
@@ -131,6 +133,7 @@ public class SecurityConfig1 {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        System.out.println("SECURITY CONFIG LOADED");
         return http
                 .csrf(csrf -> csrf.disable())
                 .cors(cors -> cors.configurationSource(request -> {

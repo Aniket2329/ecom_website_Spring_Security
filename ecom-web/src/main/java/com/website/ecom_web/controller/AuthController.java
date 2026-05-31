@@ -55,6 +55,7 @@ public class AuthController {
 
     @GetMapping("/test")
     public String test() {
+        System.out.println("TEST ENDPOINT HIT");
         return "Auth Controller Working";
     }
 

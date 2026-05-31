@@ -31,12 +31,16 @@ public class AuthController {
 
     BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(12);
 
-    @PostMapping("/register")
-    public ResponseEntity<String> register(@RequestBody User user) {
-        user.setPassword(encoder.encode(user.getPassword()));
-        userRepo.save(user);
-        return ResponseEntity.ok("User registered successfully!");
-    }
+//    @PostMapping("/register")
+//    public ResponseEntity<String> register(@RequestBody User user) {
+//        user.setPassword(encoder.encode(user.getPassword()));
+//        userRepo.save(user);
+//        return ResponseEntity.ok("User registered successfully!");
+//    }
+@PostMapping("/register")
+public ResponseEntity<String> register(@RequestBody User user) {
+    return ResponseEntity.ok("REGISTER METHOD CHANGED");
+}
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody AuthRequest request) {

@@ -53,5 +53,10 @@ public class AuthController {
         return ResponseEntity.ok(new AuthResponse(token));
     }
 
+    @GetMapping("/test")
+    public String test() {
+        return "Auth Controller Working";
+    }
+
 }
 

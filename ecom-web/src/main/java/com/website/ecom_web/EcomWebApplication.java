@@ -3,7 +3,7 @@ package com.website.ecom_web;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = "com.website.ecom_web")
 public class EcomWebApplication {
 
 	public static void main(String[] args) {

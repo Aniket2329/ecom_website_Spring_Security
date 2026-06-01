@@ -104,6 +104,7 @@ import com.website.ecom_web.Filter.JwtAuthFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -121,6 +122,7 @@ import java.util.List;
 
 @Configuration
 @EnableWebSecurity
+@Order(1)
 public class SecurityConfig1 {
 
 
@@ -153,7 +155,7 @@ public class SecurityConfig1 {
                         .requestMatchers("/api/products/add").hasRole("ADMIN")
                         .requestMatchers("/api/products/update/**").hasRole("ADMIN")
                         .requestMatchers("/api/products/delete/**").hasRole("ADMIN")
-                        .anyRequest().authenticated()
+                        .anyRequest().permitAll()
                 )
                 .sessionManagement(session ->
                         session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
